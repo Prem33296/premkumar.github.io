@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prem Kumar Saraf - Personal Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & basics */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1E293B; /* Dark Blue Gray */
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #F97316; /* Orange */
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1rem 4rem;
+    }
+    h1, h2, h3, h4 {
+      margin: 0 0 0.5rem;
+      font-weight: 700;
+      color: #1E3A8A; /* Blue */
+    }
+    p {
+      margin: 0 0 1rem;
+      color: #475569; /* Slate */
+    }
+
+    /* Hero Section */
+    #hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 1rem 6rem;
+      background: linear-gradient(135deg, #1E3A8A 0%, #F97316 100%);
+      color: white;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero img {
+      width: 220px;
+      height: 220px;
+      border-radius: 9999px;
+      object-fit: cover;
+      border: 4px solid white;
+      flex-shrink: 0;
+      box-shadow: 0 8px 20px rgba(249,115,22,0.4);
+      transition: transform 0.3s ease;
+    }
+    #hero img:hover {
+      transform: scale(1.05);
+    }
+    #hero .hero-text {
+      flex: 1;
+      min-width: 280px;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #hero h1 {
+      font-size: 3.5rem;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: white;
+    }
+    #hero h2 {
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: #FFEDD5; /* light orange */
+      margin-bottom: 0;
+    }
+    #rotating-taglines {
+      height: 2rem;
+      overflow: hidden;
+      position: relative;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #FFE7BA; /* soft orange */
+      margin-bottom: 1.5rem;
+    }
+    #rotating-taglines span {
+      position: absolute;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.5s ease;
+      width: 100%;
+    }
+    #rotating-taglines span.active {
+      opacity: 1;
+      transform: translateY(0%);
+      position: relative;
+    }
+
+    /* CTA Buttons */
+    .cta-buttons {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: white;
+      color: #F97316;
+      padding: 0.75rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 10px rgba(249,115,22,0.3);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: #F97316;
+      color: white;
+      box-shadow: 0 6px 18px rgba(249,115,22,0.7);
+    }
+
+    /* Section Cards */
+    section {
+      margin-bottom: 4rem;
+    }
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      border-left: 6px solid #F97316;
+      padding-left: 1rem;
+      color: #1E3A8A;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      padding: 1.5rem 2rem;
+      flex: 1 1 320px;
+      max-width: 440px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #1E3A8A;
+    }
+    .card ul {
+      padding-left: 1.25rem;
+      margin: 0;
+      color: #475569;
+    }
+    .card ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    /* Stats Box */
+    .stats-box {
+      background: #F97316;
+      color: white;
+      border-radius: 1rem;
+      padding: 1rem 2rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 6px 18px rgba(249,115,22,0.5);
+      display: inline-block;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    /* Founder Quote */
+    .quote {
+      font-style: italic;
+      color: #475569;
+      background: #F0F9FF;
+      border-left: 6px solid #F97316;
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Contact Section */
+    #contact {
+      text-align: center;
+      padding-top: 2rem;
+    }
+    #contact p {
+      font-size: 1.1rem;
+    }
+    #contact a {
+      font-weight: 700;
+      color: #1E3A8A;
+      margin: 0 0.5rem;
+    }
+    #contact a:hover {
+      color: #F97316;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      #hero {
+        flex-direction: column;
+      }
+      #hero h1 {
+        font-size: 2.75rem;
+      }
+      #hero h2 {
+        font-size: 1.25rem;
+      }
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Animations */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    [data-animate].visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section id="hero">
+    <img src="https://i.postimg.cc/PvJq2mdj/prem-profile.jpg" alt="Prem Kumar Saraf" />
+    <div class="hero-text">
+      <h1>Prem Kumar Saraf</h1>
+      <h2>Software Engineer & Growth Enthusiast</h2>
+      <div id="rotating-taglines">
+        <span class="active">Helping You Grow, While Growing Myself</span>
+        <span>Building scalable backend systems with clarity</span>
+        <span>Consistent execution. Creative solutions.</span>
+      </div>
+      <div class="cta-buttons">
+        <a href="https://drive.google.com/file/d/1uaDWXm977Jt7mlyrLSQsmjwDm2vU9UEQ/view?usp=drive_link" target="_blank" rel="noopener" class="btn">💼 View Resume</a>
+        <a href="https://linkedin.com/in/prem-kumar-84316b6b" target="_blank" rel="noopener" class="btn">🔗 Connect on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+
+    <!-- About -->
+    <section id="about" data-animate>
+      <h2 class="section-title">About Prem</h2>
+      <p>
+        I’m a backend-focused software engineer with 2 years of experience in <strong>Java</strong>, <strong>Spring Boot</strong>, <strong>Kafka</strong>, and <strong>DevOps</strong>. I build robust APIs and microservices and bring structure to systems using best practices. My academic background from <strong>IIT Hyderabad</strong> adds an edge in <strong>AI and ML fundamentals</strong>, which I continue to explore in real-world applications.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" data-animate>
+      <h2 class="section-title">Experience</h2>
+      <div class="card-container">
+        <article class="card">
+          <h3>Mercedes-Benz R&D</h3>
+          <time>Aug 2023 – Present</time>
+          <ul>
+            <li>Developed scalable backends using Spring Boot + JWT</li>
+            <li>Managed real-time processing with Kafka</li>
+            <li>Integrated PostgreSQL + JPA for data persistence</li>
+            <li>Contributed to DevOps pipelines and Agile sprints</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>ADP Inc.</h3>
+          <time>Feb 2020 – Oct 2020</time>
+          <ul>
+            <li>Built HR systems using Java + Spring Boot</li>
+            <li>Automated payroll workflows</li>
+            <li>Deployed REST APIs backed by PostgreSQL</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" data-animate>
+      <h2 class="section-title">Education</h2>
+      <div class="card-container">
+        <article class="card">
+          <h3>IIT Hyderabad</h3>
+          <time>2021 – 2023</time>
+          <p>M.Tech – Computer Science | Specialization: Machine Learning, Data Structures & Algorithms, Networks</p>
+        </article>
+        <article class="card">
+          <h3>RGUKT Basar</h3>
+          <time>2015 – 2019</time>
+          <p>B.Tech – Computer Science</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Grow Together Initiative -->
+    <section id="grow-together" data-animate>
+      <h2 class="section-title">Grow Together</h2>
+      <p>
+        Grow Together is a <strong>community platform for personal growth</strong>. We believe <strong>accountability</strong>, <strong>shared knowledge</strong>, and <strong>daily consistency</strong> are key to reaching your goals.
+      </p>
+      <p>
+        Join small groups, set daily targets, share progress, and stay motivated.
+      </p>
+      <div>
+        <span class="stats-box">✅ 100+ tasks completed</span>
+        <span class="stats-box">👥 10+ members and growing</span>
+      </div>
+      <div style="margin-top: 1.5rem;">
+        <a href="#" class="btn">🌱 Join Grow Together</a>
+        <a href="mailto:prem33296@gmail.com" class="btn">📧 Contact for Career Guidance</a>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" data-animate>
+      <h2 class="section-title">Projects</h2>
+      <div class="card-container">
+        <article class="card">
+          <h3>E-commerce App</h3>
+          <p>Spring Boot + JWT + H2 DB<br />Product/cart management, admin dashboard</p>
+        </article>
+        <article class="card">
+          <h3>Stock Alert System</h3>
+          <p>Observer Design Pattern in Java<br />Notifications via Email & Mobile</p>
+        </article>
+        <article class="card">
+          <h3>OER Repository Enhancement (NVLI)</h3>
+          <p>Java + JSP + DSpace<br />Added word clouds, dashboards, and recommendations</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Values / Philosophy -->
+    <section id="values" data-animate>
+      <h2 class="section-title">Values & Philosophy</h2>
+      <blockquote class="quote">
+        "Grow and let grow." I believe growth happens when we help others grow too — with structure, empathy, and honest effort.
+      </blockquote>
+    </section>
+
+    <!-- Resume -->
+    <section id="resume" data-animate>
+      <h2 class="section-title">Resume</h2>
+      <p>Download my complete resume for more insights.</p>
+      <a href="https://drive.google.com/file/d/1uaDWXm977Jt7mlyrLSQsmjwDm2vU9UEQ/view?usp=drive_link" class="btn" target="_blank" rel="noopener">📄 Download Resume (PDF)</a>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" data-animate>
+      <h2 class="section-title">Contact Me</h2>
+      <p>📧 <a href="mailto:prem33296@gmail.com">prem33296@gmail.com</a></p>
+      <p>🔗 <a href="https://linkedin.com/in/prem-kumar-84316b6b" target="_blank" rel="noopener">linkedin.com/in/prem-kumar-84316b6b</a></p>
+      <p>💬 Open to collaboration, mentorship, career guidance</p>
+    </section>
+
+  </main>
+
+<script>
+  // Rotating tagline slide animation
+  const taglines = document.querySelectorAll('#rotating-taglines span');
+  let index = 0;
+
+  function showTagline(i) {
+    taglines.forEach((el, idx) => {
+      el.classList.toggle('active', idx === i);
+    });
+  }
+  setInterval(() => {
+    index = (index + 1) % taglines.length;
+    showTagline(index);
+  }, 3500);
+
+  // Scroll reveal animation for sections
+  function onScroll() {
+    const animElements = document.querySelectorAll('[data-animate]');
+    animElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        el.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', onScroll);
+  window.addEventListener('load', onScroll);
+</script>
+
+</body>
+</html>
